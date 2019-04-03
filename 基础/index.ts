@@ -8,13 +8,21 @@
     // 变量
     let isDone: boolean = false;
     let createByNewBoolean: Boolean = new Boolean();
+    
+    let decLiteral: number = 1;
+    let hexLiteral: number = 0xf00d;  //16进制
+    let binaryLiteral: number = 0b111;  //2进制
+    let octalLiteral: number = 0o111;  //8进制
+    console.log(decLiteral, hexLiteral, binaryLiteral, octalLiteral);
 
-    let id: number = 1;
     let name1: string = "Geralt of Rivia";
     let sentence: string = `${name} is a witcher`;
     let any: any = 123;
     let u: undefined = undefined;
     let n: null = null;
+    let myFavoriteNumber: string|number;
+    myFavoriteNumber = 'two';
+    myFavoriteNumber = 22;
 
     // 数组
     let list: number[] = [1, 2, 3];

@@ -1,0 +1,18 @@
+{
+  "name": "learn_webpack",
+  "version": "1.0.0",
+  "description": "学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --watch --progress --color --mode production"
+  },
+  "author": "mk",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.4.1",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
