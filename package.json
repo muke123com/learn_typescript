@@ -31,7 +31,7 @@
     "typeORM",
     "class-validator",
     "helmet",
-    "sql",
+    "mysql",
     "api",
     "rest",
     "heroku",

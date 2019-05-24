@@ -46,7 +46,9 @@ export default class UserController {
         // build up entity user to be saved
         const userToBeSaved: User = new User();
         userToBeSaved.name = ctx.request.body.name;
+        userToBeSaved.password = ctx.request.body.password;
         userToBeSaved.email = ctx.request.body.email;
+        userToBeSaved.createDate = new Date();
 
         // validate user entity
         const errors: ValidationError[] = await validate(userToBeSaved); // errors is an array of validation errors

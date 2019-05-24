@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Length, IsEmail } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Length, IsEmail, IsDate } from 'class-validator';
+import { isDate } from 'util';
 
-@Entity()
+@Entity('m_user')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -13,9 +14,20 @@ export class User {
     name: string;
 
     @Column({
+        length: 80
+    })
+    password: string;
+
+    @Column({
         length: 100
     })
-    @Length(10, 100)
+    @Length(1, 100)
     @IsEmail()
     email: string;
+
+    @CreateDateColumn()
+    createDate: Date;
+
+    @UpdateDateColumn()
+    updateDate: Date;
 }

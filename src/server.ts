@@ -17,28 +17,30 @@ import { router } from './routes';
 dotenv.config({ path: '.env' });
 
 // Get DB connection options from env variable
-const connectionOptions = PostgressConnectionStringParser.parse(config.databaseUrl);
 
 // create connection with database
 // note that its not active database connection
 // TypeORM creates you connection pull to uses connections from pull on your requests
 createConnection({
-    type: 'postgres',
-    host: connectionOptions.host,
-    port: connectionOptions.port,
-    username: connectionOptions.user,
-    password: connectionOptions.password,
-    database: connectionOptions.database,
+    type: "mysql",
+    host: "localhost",
+    port: 3306,
+    username: "root",
+    password: "123456",
+    database: "m_test",
     synchronize: true,
     logging: false,
+    // entities: [
+    //    'dist/entity/**/*.js'
+    // ],
     entities: [
-       'dist/entity/**/*.js'
+        "src/entity/**/*.ts"
     ],
-    extra: {
-        ssl: config.dbsslconn, // if not development, will use SSL
-    }
+    // extra: {
+    //     ssl: config.dbsslconn, // if not development, will use SSL
+    // }
  }).then(async connection => {
-
+    connection.synchronize();
     const app = new Koa();
 
     // Provides important security headers to make your app more secure
@@ -54,7 +56,7 @@ createConnection({
     app.use(bodyParser());
 
     // JWT middleware -> below this line routes are only reached if JWT token is valid, secret as env variable
-    app.use(jwt({ secret: config.jwtSecret }));
+    app.use(jwt({ secret: config.jwtSecret, passthrough:true }));
 
     // this routes are protected by the JWT middleware, also include middleware to respond with "Method Not Allowed - 405".
     app.use(router.routes()).use(router.allowedMethods());
