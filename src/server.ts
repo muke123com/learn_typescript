@@ -22,19 +22,19 @@ dotenv.config({ path: '.env' });
 // note that its not active database connection
 // TypeORM creates you connection pull to uses connections from pull on your requests
 createConnection({
-    type: "mysql",
-    host: "localhost",
+    type: 'mysql',
+    host: config.databaseUrl,
     port: 3306,
-    username: "root",
-    password: "123456",
-    database: "m_test",
+    username: 'root',
+    password: '123456',
+    database: 'm_test',
     synchronize: true,
     logging: false,
     // entities: [
     //    'dist/entity/**/*.js'
     // ],
     entities: [
-        "src/entity/**/*.ts"
+        'src/entity/**/*.ts'
     ],
     // extra: {
     //     ssl: config.dbsslconn, // if not development, will use SSL
@@ -56,7 +56,7 @@ createConnection({
     app.use(bodyParser());
 
     // JWT middleware -> below this line routes are only reached if JWT token is valid, secret as env variable
-    app.use(jwt({ secret: config.jwtSecret, passthrough:true }));
+    app.use(jwt({ secret: config.jwtSecret, passthrough: true }));
 
     // this routes are protected by the JWT middleware, also include middleware to respond with "Method Not Allowed - 405".
     app.use(router.routes()).use(router.allowedMethods());
